@@ -1,0 +1,65 @@
+
+
+<html>
+<body>
+
+<center>
+<button type="button"  onclick="document.getElementById('demo').innerHTML = Date()"> Today's Date and Time.</button>
+
+<p id="demo"></p></center>
+ 
+<%if @users.blank? %>
+<h4>Result can not found <%= params[:search] %>.</h4>
+<% end %>
+ <table border="2px" class="table table-bordered">
+<ul>
+ 
+    <td>
+	<% @users.where.not(id: current_user.id).each do |user| %><hr>
+		<li >
+			<%= user.email %> |<p align="center">
+    <%if Friendship.where(user_id: [current_user.id, user.id],friend_id: [current_user.id, user.id],accepted: false).present? %>
+        Request Sent
+        <%elsif Friendship.where(user_id: [current_user.id, user.id],friend_id: [current_user.id, user.id],accepted: true).present?
+          %>
+          Friend
+      <%else %> 
+			<%= link_to "Add Friend", friendships_path(friend_id: user), method: :post, class: "btn btn-success"%>
+      <%if current_user && current_user.admin %>
+
+      <%= link_to "Delete", user_path(id: user.id), method: :delete, class:"btn btn-danger"%>
+       <% end %> <%end%></p>
+		</li>
+	<% end %>
+  </ul>
+</td>
+</table>
+
+
+# Here is a list of your pending requests
+
+<ul>
+    <% current_user.received_friendships.each do |f_request| %>
+    <li>
+
+      <%= f_request.user.email %>
+
+      <%= link_to "Accept",  friendship_path(id: f_request.id), method: "put", class: "btn btn-success" %>
+
+      <%= link_to "Decline", friendship_path(id: f_request.id), method: :delete, class:"btn btn-danger" %>
+      
+    </li>
+  <% end %>
+</ul> 
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

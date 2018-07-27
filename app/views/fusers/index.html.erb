@@ -1,0 +1,27 @@
+
+
+
+<h1>Listing Users</h1>
+<%= link_to 'New fuser', new_fuser_path %>
+<table>
+  <tr>
+    <th>Image</th>
+    <th>Name</th>
+    <th>About</th>
+    <th colspan="3"></th>
+  </tr>
+ 
+  <% @fusers.each do |fuser| %>
+    <tr>
+      <td><%= image_tag fuser.image_url.to_s %></td>
+      <td><%= fuser.name %></td>
+      <td><%= fuser.about %></td>
+      <td><%= link_to 'Show', fuser_path(fuser) %></td>
+      <!--<td><%= link_to 'Edit', edit_fuser_path(fuser) %></td>-->
+      <td><%= link_to 'Remove', fuser_path(fuser),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+      <td><%=link_to 'Add friend', fuser_path(fuser) %></td>
+    </tr>
+  <% end %>
+</table>

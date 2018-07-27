@@ -1,0 +1,16 @@
+<p>
+  <strong>Image:</strong>
+ <%= image_tag @fuser.image_url.to_s %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @fuser.name %>
+</p>
+ 
+<p>
+  <strong>About:</strong>
+  <%= @fuser.about %>
+</p>
+
+<!--<%= link_to 'Edit', edit_fuser_path(@fuser) %>-->
+<%= link_to 'Back', fusers_path %>
