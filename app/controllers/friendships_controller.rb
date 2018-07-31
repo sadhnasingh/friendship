@@ -43,5 +43,17 @@ class FriendshipsController < ApplicationController
 		user=current_user
 		@users=user.friends
 	end
+	def myprofile
+		 current_user == @user
+		
+	end
+	def show
+    if params[:id]
+  user = User.find(params[:id])
+else
+  user = current_user
+end
+
+  end
 	
 end

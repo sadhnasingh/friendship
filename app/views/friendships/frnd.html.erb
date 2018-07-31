@@ -3,40 +3,49 @@
 <html>
 <body>
 
-<center>
-<button type="button"  onclick="document.getElementById('demo').innerHTML = Date()"> Today's Date and Time.</button>
 
-<p id="demo"></p></center>
  
 <%if @users.blank? %>
 <h4>Result can not found <%= params[:search] %>.</h4>
-<% end %>
+<% end %><h2 align="center">All User  </h2>
+
  <table border="2px" class="table table-bordered">
 <ul>
- 
+  <tr>
     <td>
-	<% @users.where.not(id: current_user.id).each do |user| %><hr>
-		<li >
-			<%= user.email %> |<p align="center">
-    <%if Friendship.where(user_id: [current_user.id, user.id],friend_id: [current_user.id, user.id],accepted: false).present? %>
-        Request Sent
+	
+  
+
+<%= link_to 'My Profile', friendships_myprofile_path, class: "btn btn-success btn-lg"%>
+<% @users.where.not(id: current_user.id).each do |user| %><hr>
+  <li >
+      <%= user.name %> 
+			<%= user.email %> |&nbsp;&nbsp;&nbsp;&nbsp;
+  
+    <% if user.image.present? %><%= image_tag user.image_url.to_s, style:"height: 70px; width: 100px;" %>
+    <%end%> &nbsp;&nbsp;&nbsp;&nbsp;
+   <%= user.about %>
+      <p align="center">
+    <%if Friendship.where(user_id: [current_user.id, user.id],friend_id: [current_user.id, user.id],accepted: false).present?%>
+    <button type="button" class="btn btn-danger">Request sent</button>
+        
         <%elsif Friendship.where(user_id: [current_user.id, user.id],friend_id: [current_user.id, user.id],accepted: true).present?
           %>
-          Friend
+          <button type="button" class="btn btn-primary">Friend</button>
       <%else %> 
-			<%= link_to "Add Friend", friendships_path(friend_id: user), method: :post, class: "btn btn-success"%>
+			<%= link_to "Add Friend", friendships_path(friend_id: user), method: :post, class:"btn btn-success"%>
       <%if current_user && current_user.admin %>
 
-      <%= link_to "Delete", user_path(id: user.id), method: :delete, class:"btn btn-danger"%>
+      <%= link_to "Delete", user_path(id: user.id), method: :delete, class: "btn btn-danger"%>
        <% end %> <%end%></p>
 		</li>
 	<% end %>
   </ul>
-</td>
+</td></tr>
 </table>
 
 
-# Here is a list of your pending requests
+<h3># Here is a list of your pending requests</h3>
 
 <ul>
     <% current_user.received_friendships.each do |f_request| %>
@@ -44,7 +53,7 @@
 
       <%= f_request.user.email %>
 
-      <%= link_to "Accept",  friendship_path(id: f_request.id), method: "put", class: "btn btn-success" %>
+      <%= link_to "Accept",  friendship_path(id: f_request.id), method: "put", class:"btn btn-success"%>
 
       <%= link_to "Decline", friendship_path(id: f_request.id), method: :delete, class:"btn btn-danger" %>
       

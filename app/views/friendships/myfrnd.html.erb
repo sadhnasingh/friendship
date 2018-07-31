@@ -2,7 +2,10 @@
  <ul>
  <% @users.each do |user| %>
 <li ><hr>
+	<%= user.name %> 
 	<%= user.email %>
+	<%= image_tag user.image_url.to_s, style:"height: 70px; width: 100px;" %>
+    <%= user.about %>
   </li>
  <%end%>
 </ul>

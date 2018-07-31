@@ -1,0 +1,16 @@
+<center><h1>My Profile </h1></center>
+ <ul>
+<% if current_user.present? %>
+<hr> <strong>Name:</strong>
+    <%= current_user.name %><br><br>
+	 <strong>Email:</strong>
+	<%= current_user.email %><br><br>
+     <strong>Image</strong>
+	<%= image_tag current_user.image_url.to_s, style:"height: 70px; width: 100px;" %><br><br>
+    <strong>About:</strong>
+    <%= current_user.about %><br><br>
+
+  
+  <%end%>
+</ul>
+<%= link_to 'Edit Profile', edit_user_registration_path, class: "btn btn-success" %>

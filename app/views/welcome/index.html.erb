@@ -1,13 +1,55 @@
+<html>
+<body>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <center> 
+    <%= form_tag(friendships_frnd_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search],placeholder: "Search friends"%>
+      <%= submit_tag 'Search', :email => nil, class:"btn btn-primary" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
+       <button type="button"  onclick="document.getElementById('demo').innerHTML = Date()" class="btn btn-success"> Today's Date and Time.</button>
+
+<p id="demo"></p>
+  <% end %>
+  </center>
 
 
 <div class="header">
   <a href="#default" class="logo"><marquee>Welcome User</marquee></a>
+
 	  <div class="header-right">
+	  	 
 	    <a class="active" href="friendships/frnd">All Users</a>
+<%= link_to 'My Profile', friendships_myprofile_path, class: "btn btn-success btn-lg"%>
+<h2><%= link_to 'My Friends', "/friendships/myfrnd", class: "btn btn-success btn-lg"%>&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to 'All Users', "/friendships/frnd", class: "btn btn-success btn-lg"%></h2>
 	  </div>
-</div> 
-<br><br><br><br><br><br><br><br><br>
+	
+
+</div> <br><br>
 <%#= link_to 'All User', controller: 'fusers' %>
-<center><h2><%= link_to 'My Friends', "/friendships/myfrnd", class: "btn btn-success btn-lg"%>&nbsp;&nbsp;&nbsp;&nbsp;
-	<%= link_to 'All Users', "/friendships/frnd", class: "btn btn-success btn-lg"%></h2></center>
-<br><br><br><br><br><br><br><br><br><br><br><br>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+<!-- bxSlider CSS file -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css" rel="stylesheet">
+
+<script type="text/javascript">
+setTimeout(function(){
+$('.bxslider').bxSlider({
+auto: true,
+autoControls: true,
+
+stopAutoOnClick: true,
+pager: true,
+
+slideWidth: 1000,
+});
+},2000);
+</script>
+
+<div class="bxslider">
+  <div><%= image_tag asset_path("slider1.jpg") %></div>
+  <div><%= image_tag asset_path("slider3.jpg") %></div>
+  <div><%= image_tag asset_path("slider2.jpg") %></div>
+</div> 
+
+
+</body>
+</html>
