@@ -28,6 +28,11 @@ class FriendshipsController < ApplicationController
 	  @friendship.destroy
 	  flash[:notice] = "Removed friendship."
 	  redirect_to "/friendships/frnd"
+      
+       # @friendship = Friendship.where(user_id: params[:id], friend_id: current_user.id)
+       # if @friendship.exits?
+       #  @friendship.destroy
+       # end
 	end
 
 	def frnd
@@ -47,13 +52,23 @@ class FriendshipsController < ApplicationController
 		 current_user == @user
 		
 	end
-	def show
-    if params[:id]
-  user = User.find(params[:id])
-else
-  user = current_user
-end
+	def friendprofile
+		@friendship = User.find(params[:id])
 
-  end
+	end
+	def pending
+		
+		@users=current_user
+
+		@users = User.find_by(params[:id])
+	end
+# 	def show
+#     if params[:id]
+#   user = User.find(params[:id])
+# else
+#   user = current_user
+# end
+
+#   end
 	
 end

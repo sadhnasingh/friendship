@@ -1,11 +1,12 @@
 
 <html>
 <body>
-
+  <head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <center> <fieldset>
-  <legend><h2>Log in</h2></legend></fieldset>
+  <legend><h2 >Log in</h2></legend></fieldset>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-<table border="3px" width="30%">
+<table border="2px" align="center" width="30%", style="background-color: violet">
   <td><br>
     <div class="field">
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= f.label :email %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -26,19 +27,24 @@
     <% end -%><br>
 
     <center><div class="actions">
-      <%= f.submit "Log in", class:"btn btn-success"%>
+      <%= f.submit "Log in", class:"btn btn-success btn-lg"%>
     </div></center>
   <% end %>
-<center><h3>OR</h3>
-<%= link_to "Login With Facebook",  "/auth/facebook", class:"bn btn-success" %><br>or
-<%= link_to "Login With LinkedIn",  "/auth/linkedin", class:"bn btn-success" %><br>or
-<%= link_to "Login With Google",  "/auth/google_oauth2", class:"bn btn-success"%><br>or
-<%= link_to "Login With Twitter",  "/auth/twitter", class:"bn btn-success"%><br>
+<center><h4>OR</h4>
+<%= link_to "Login With Google",  "/auth/google_oauth2", class:"btn btn-success"%><br>
+<h6>OR</h6>
+ <%= link_to "Login With Facebook",  "/auth/facebook", class:"btn btn-success" %><br>
+ <h6>OR</h6>
+ <%= link_to "Login With LinkedIn",  "/auth/linkedin", class:"btn btn-success"%><br>
+ <h6>OR</h6>
+ <%= link_to "Login With Twitter",  "/auth/twitter", class:"btn btn-success"%><br>
+ <br>
 <%= render "devise/shared/links" %>
 </center>
 </td>
 </table>
 </center>
 </body>
+</head>
 </html>
 

@@ -9,4 +9,5 @@ class UsersController < ApplicationController
 	  flash[:notice] = "Removed friendship."
 	  redirect_to "/friendships/frnd"
 	end
+	
 end

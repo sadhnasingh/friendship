@@ -1,3 +1,7 @@
+<html>
+<body><br><br>
+	<table border="2px" align="center" width="30%", style="background-color: pink">
+	<td>
 <center><h1>My Profile </h1></center>
  <ul>
 <% if current_user.present? %>
@@ -9,8 +13,11 @@
 	<%= image_tag current_user.image_url.to_s, style:"height: 70px; width: 100px;" %><br><br>
     <strong>About:</strong>
     <%= current_user.about %><br><br>
-
-  
   <%end%>
 </ul>
-<%= link_to 'Edit Profile', edit_user_registration_path, class: "btn btn-success" %>
+<%= link_to 'Edit my profile', edit_user_registration_path, class: "btn btn-success" %>
+</td>
+</table>
+
+</body>
+</html>

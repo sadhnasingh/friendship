@@ -1,11 +1,44 @@
+ <!DOCTYPE html>
+ <html>
+ <body>
  <center><h1>My Friend </h1></center>
+<table class="table">
  <ul>
- <% @users.each do |user| %>
-<li ><hr>
-	<%= user.name %> 
-	<%= user.email %>
-	<%= image_tag user.image_url.to_s, style:"height: 70px; width: 100px;" %>
-    <%= user.about %>
-  </li>
- <%end%>
+ 	<tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Profile Image</th>
+      <th>About</th>
+    </tr>
+<% @users.each do |user| %>
+  <tr>
+  	<td><%= user.name %> </td>
+  	<td><%= user.email %></td>
+  	<td><%= image_tag user.image_url.to_s, style:"height: 70px; width: 100px;" %></td>
+    <td><%= user.about %></td>
+    <td>
+      <% if user.friendships.present?%>
+        <% user.friendships.each do |friend| %>
+          <%= link_to "Unfriend", friendship_path(id: friend.id), method: :delete, class: "btn btn-danger" %>
+        <%end%>   
+      <%elsif current_user.friendships.present? %>
+        <% current_user.friendships.each do |friend| %>
+          <%= link_to "Unfriend", friendship_path(id: friend.id), method: :delete, class: "btn btn-danger" %>
+        <%end%> 
+      <%else%>
+      <%end%>
+    </td> 
+   <td> <%= link_to 'Show profile', friendships_friendprofile_user_path(user), class: "btn btn-success "%> </td> 
+  </tr>
+ <%end%> 
 </ul>
+
+</table>
+<center><%= link_to 'Back', :back, class: "btn btn-success btn-lg" %></center>
+
+</body>
+ </html>
+
+
+
+ 

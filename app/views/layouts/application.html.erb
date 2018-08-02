@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Fm</title>
+    <title>Friendship Model</title>
+    <%= favicon_link_tag 'favicon.ico' %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -13,10 +14,10 @@
 <div id="user_nav">
 <%= yield %>
  <center>
-	  <p> <% if user_signed_in? %> Signed in as <%= current_user.email %>.Not you?
-	<%= link_to "Sign out", destroy_user_session_path, :method=> :delete %>
+	  <p> <% if user_signed_in? %> <h3 style="color:red;">Signed in as </h3><%= current_user.email %> <h3 style="color:red;">.Not you?</h3>
+	<%= link_to "Sign out", destroy_user_session_path, :method=> :delete, class:"btn btn-success" %>
 	<% else %>
-	<%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+	<%= link_to "Sign up", new_user_registration_path, class:"btn btn-primary"%> or <%= link_to "sign in", new_user_session_path, class:"btn btn-success" %>
 	<% end %></p>
 	</center>
 </div>

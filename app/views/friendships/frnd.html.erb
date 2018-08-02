@@ -3,52 +3,63 @@
 <html>
 <body>
 
-
  
 <%if @users.blank? %>
 <h4>Result can not found <%= params[:search] %>.</h4>
 <% end %><h2 align="center">All User  </h2>
-
- <table border="2px" class="table table-bordered">
-<ul>
-  <tr>
-    <td>
-	
-  
-
 <%= link_to 'My Profile', friendships_myprofile_path, class: "btn btn-success btn-lg"%>
-<% @users.where.not(id: current_user.id).each do |user| %><hr>
-  <li >
-      <%= user.name %> 
-			<%= user.email %> |&nbsp;&nbsp;&nbsp;&nbsp;
-  
-    <% if user.image.present? %><%= image_tag user.image_url.to_s, style:"height: 70px; width: 100px;" %>
-    <%end%> &nbsp;&nbsp;&nbsp;&nbsp;
-   <%= user.about %>
-      <p align="center">
-    <%if Friendship.where(user_id: [current_user.id, user.id],friend_id: [current_user.id, user.id],accepted: false).present?%>
-    <button type="button" class="btn btn-danger">Request sent</button>
-        
-        <%elsif Friendship.where(user_id: [current_user.id, user.id],friend_id: [current_user.id, user.id],accepted: true).present?
-          %>
-          <button type="button" class="btn btn-primary">Friend</button>
-      <%else %> 
-			<%= link_to "Add Friend", friendships_path(friend_id: user), method: :post, class:"btn btn-success"%>
-      <%if current_user && current_user.admin %>
 
-      <%= link_to "Delete", user_path(id: user.id), method: :delete, class: "btn btn-danger"%>
-       <% end %> <%end%></p>
-		</li>
+<div class="table-responsive"> 
+ <table class="table">
+
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Profile Image</th>
+      <th>About</th>
+    </tr>
+      <% @users.where.not(id: current_user.id).each do |user| %>
+    <tr>
+      <td>
+       <%= user.name %> 
+      </td>
+		  <td>	
+        <%= user.email %> |&nbsp;&nbsp;&nbsp;&nbsp;
+      </td>
+      <td>
+          <% if user.image.present? %><%= image_tag user.image_url.to_s, style:"height: 70px; width: 100px;" %>
+            <%end%> &nbsp;&nbsp;&nbsp;&nbsp;
+          </td>
+        <td>
+          <%= user.about %>
+        </td>
+        <td>
+        <p align="center">
+      <%if Friendship.where(user_id: [current_user.id, user.id],friend_id: [current_user.id, user.id],accepted: false).present?%>
+      <button type="button" class="btn btn-danger">Request sent</button>
+          
+          <%elsif Friendship.where(user_id: [current_user.id, user.id],friend_id: [current_user.id, user.id],accepted: true).present?
+            %>
+            <button type="button" class="btn btn-primary">Friend</button>
+        <%else %> 
+  			<%= link_to "Add Friend", friendships_path(friend_id: user), method: :post, class:"btn btn-success"%>
+        <%if current_user && current_user.admin %>
+
+        <%= link_to "Delete", user_path(id: user.id), method: :delete, class: "btn btn-danger"%>
+         <% end %> <%end%></p>
+      </td>
+   </tr>
+	
 	<% end %>
-  </ul>
-</td></tr>
+  
+
 </table>
 
 
 <h3># Here is a list of your pending requests</h3>
 
 <ul>
-    <% current_user.received_friendships.each do |f_request| %>
+    <% current_user.pending_friends.each do |f_request| %>
     <li>
 
       <%= f_request.user.email %>
@@ -60,7 +71,7 @@
     </li>
   <% end %>
 </ul> 
-
+</div>
 </body>
 </html>
 

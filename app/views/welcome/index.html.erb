@@ -1,4 +1,5 @@
-<html>
+<html><head>
+
 <body>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    <center> 
     <%= form_tag(friendships_frnd_path, :method => "get", id: "search-form") do %>
@@ -13,18 +14,20 @@
 
 
 <div class="header">
-  <a href="#default" class="logo"><marquee>Welcome User</marquee></a>
+  <a class="logo">Welcome User</a>
 
 	  <div class="header-right">
 	  	 
 	    <a class="active" href="friendships/frnd">All Users</a>
-<%= link_to 'My Profile', friendships_myprofile_path, class: "btn btn-success btn-lg"%>
-<h2><%= link_to 'My Friends', "/friendships/myfrnd", class: "btn btn-success btn-lg"%>&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to 'All Users', "/friendships/frnd", class: "btn btn-success btn-lg"%></h2>
+      <a href="friendships/myprofile">My Profile</a>
+      <a href="friendships/myfrnd">My Friends</a>
+      <a href="friendships/pending">Pending Requests</a>
+
+
 	  </div>
 	
 
-</div> <br><br>
+</div> 
 <%#= link_to 'All User', controller: 'fusers' %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
 <!-- bxSlider CSS file -->
@@ -39,17 +42,30 @@ autoControls: true,
 stopAutoOnClick: true,
 pager: true,
 
-slideWidth: 1000,
+slideWidth: 1500,
 });
-},2000);
+},500);
 </script>
-
+<table border="2px"align="center">
+<center>
 <div class="bxslider">
-  <div><%= image_tag asset_path("slider1.jpg") %></div>
-  <div><%= image_tag asset_path("slider3.jpg") %></div>
-  <div><%= image_tag asset_path("slider2.jpg") %></div>
-</div> 
+  <div><%= image_tag asset_path("slideer1.jpg"), style:"height: 500px; width: 100%;"%></div>
+  <div><%= image_tag asset_path("slideer00.jpg"), style:"height: 500px; width: 100%;"%></div>
+  <div>
+  <%= image_tag asset_path("slider11.jpg"), style:"height: 500px; width: 100%;" %>
+  </div>
+  <div>
+  <%= image_tag asset_path("slider12.jpg"), style:"height: 500px; width: 100%;" %>
+</div>
+  
+  <div><%= image_tag asset_path("slider16.jpg"),style:"height: 500px; width: 100%;"%></div>
+ 
+  <div><%= image_tag asset_path("slider.jpg"),style:"height: 500px; width: 100%;" %></div>
+  
 
+</div> </table></center>
 
+<%= link_to 'Back', users_path %>
 </body>
+</head>
 </html>

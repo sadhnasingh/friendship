@@ -11,8 +11,14 @@ Rails.application.routes.draw do
   resources :friendships, only: [:create, :update, :destroy]
   get 'friendships/frnd'
   get 'friendships/myfrnd'
-   get 'friendships/myprofile'
- resources :users
+  get 'friendships/myprofile'
+  get 'friendships/pending'
+  # get 'friendships/friendprofile' => 'friendships#friendprofile'
+ resources :users do
+   member do
+      get 'friendships/friendprofile' => 'friendships#friendprofile'
+    end
+ end
   match '/auth/:provider/callback', :to => 'sessions#facebook',  via: [:get, :post]
   match '/auth/failure', :to => 'sessions#failure', via: [:get, :post]
 
