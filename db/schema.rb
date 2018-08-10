@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_31_104719) do
+ActiveRecord::Schema.define(version: 2018_08_09_115357) do
 
   create_table "authentications", force: :cascade do |t|
     t.string "provider"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 2018_07_31_104719) do
     t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_conversations_on_friend_id"
+    t.index ["user_id", "friend_id"], name: "index_conversations_on_user_id_and_friend_id", unique: true
+    t.index ["user_id"], name: "index_conversations_on_user_id"
   end
 
   create_table "friendships", force: :cascade do |t|
@@ -44,6 +54,26 @@ ActiveRecord::Schema.define(version: 2018_07_31_104719) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
+  end
+
+  create_table "mygalleries", force: :cascade do |t|
+    t.string "image"
+    t.string "string"
+    t.string "user"
+    t.string "references"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
+
+  create_table "personal_messages", force: :cascade do |t|
+    t.text "body"
+    t.integer "conversation_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conversation_id"], name: "index_personal_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_personal_messages_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

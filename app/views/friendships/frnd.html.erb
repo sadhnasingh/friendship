@@ -6,7 +6,9 @@
  
 <%if @users.blank? %>
 <h4>Result can not found <%= params[:search] %>.</h4>
-<% end %><h2 align="center">All User  </h2>
+<% end %>
+<h6 align="right"><%= link_to 'Back', :back, class: "btn btn-success btn-lg" %></h6>
+<h1  align="center" style="color:magenta" >All User  </h1>
 <%= link_to 'My Profile', friendships_myprofile_path, class: "btn btn-success btn-lg"%>
 
 <div class="table-responsive"> 
@@ -55,8 +57,9 @@
 
 </table>
 
-
-<h3># Here is a list of your pending requests</h3>
+<table border="2px" align="center">
+<td>
+<h2 style="color:magenta">* Here is a list of your pending requests *</h2>
 
 <ul>
     <% current_user.pending_friends.each do |f_request| %>
@@ -71,7 +74,10 @@
     </li>
   <% end %>
 </ul> 
-</div>
+</td></table>
+</div><br>
+<center><%= link_to 'Back', :back, class: "btn btn-success btn-lg" %></center>
+
 </body>
 </html>
 

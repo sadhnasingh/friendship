@@ -1,0 +1,21 @@
+<br><br>
+<table border="2px" align="center">
+<td>
+<h2 style="color:magenta">* Here is a list of your pending requests *</h2>
+
+	 <ul>
+	    <% current_user.pending_friends.each do |f_request| %>
+	    <li>
+
+	      <%= f_request.user.email %>
+
+	      <%= link_to "Accept",  friendship_path(id: f_request.id), method: "put", class:"btn btn-success"%>
+
+	      <%= link_to "Decline", friendship_path(id: f_request.id), method: :delete, class:"btn btn-danger" %>
+	      
+	    </li>
+	  <% end %>
+	</ul>  
+	</td>
+</table><br>
+<center><%= link_to 'Back', :back, class: "btn btn-success btn-lg" %></center>

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  
   mount_uploader :image, ImageUploader
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -13,9 +14,16 @@ class User < ApplicationRecord
 	has_many :received_friends, -> { where(friendships: { accepted: true}) }, through: :received_friendships, source: :user
 	has_many :pending_friends, -> { where(friendships: { accepted: false}) }, foreign_key: "friend_id", class_name: "Friendship"
 	has_many :requested_friendships, -> { where(friendships: { accepted: false}) }, through: :received_friendships, source: :user
+	 has_many :comments
+	 has_many :mygalleries
+
+has_many :user_conversations, class_name: 'Conversation', foreign_key: 'user_id'
+has_many :recieved_conversations, class_name: 'Conversation', foreign_key: 'recieved_id'
+has_many :personal_messages, dependent: :destroy
+
 	def self.all_except(user)
-  where.not(id: user)
-end
+  		where.not(id: user)
+    end
 	def friends
 	  active_friends | received_friends
 	end
@@ -30,4 +38,5 @@ end
 	    order('id DESC') 
 	  end
 	end
+	 
 end

@@ -1,5 +1,5 @@
 class FriendshipsController < ApplicationController
-  
+ 
  def create
 	  @friendship = current_user.friendships.build(friend_id: params[:friend_id])
 	  if @friendship.save
@@ -23,20 +23,14 @@ class FriendshipsController < ApplicationController
 	end
 
 	def destroy
-
 	  @friendship = Friendship.find_by(id: params[:id])
 	  @friendship.destroy
 	  flash[:notice] = "Removed friendship."
 	  redirect_to "/friendships/frnd"
-      
-       # @friendship = Friendship.where(user_id: params[:id], friend_id: current_user.id)
-       # if @friendship.exits?
-       #  @friendship.destroy
-       # end
 	end
 
 	def frnd
-		@users = User.all_except(current_user)
+		@users = User.all
 
 		if params[:search]
 			@users = User.search(params[:search]).order("created_at DESC")
@@ -45,8 +39,8 @@ class FriendshipsController < ApplicationController
 		end
 	end
 	def myfrnd
-		user=current_user
-		@users=user.friends
+		user = current_user
+		@users = user.friends
 	end
 	def myprofile
 		 current_user == @user
@@ -58,17 +52,17 @@ class FriendshipsController < ApplicationController
 	end
 	def pending
 		
-		@users=current_user
+		# @users=current_user
 
-		@users = User.find_by(params[:id])
+		# users = User.find_by(params[:id])
+		@user = current_user.pending_friends
+
 	end
-# 	def show
-#     if params[:id]
-#   user = User.find(params[:id])
-# else
-#   user = current_user
-# end
+	def friendimage
+		@friendship = User.find(params[:id])
+	end
 
-#   end
 	
+
+
 end

@@ -10,11 +10,14 @@
 	 <strong>Email:</strong>
 	<%= @friendship.email %><br><br>
      <strong>Image</strong>
-	<%= image_tag @friendship.image_url.to_s, style:"height: 70px; width: 100px;" %><br><br>
+	<a href="friendimage"><%= image_tag @friendship.image_url.to_s, style:"height: 70px; width: 100px;" %></a><br><br>
     <strong>About:</strong>
     <%= @friendship.about %><br><br>
     
-</ul>
+    <%= link_to 'My friend gallery',  mygalleries_friendgallery_user_path, class: "btn btn-success" %>
+  
+    
+</ul> 
 
 </td>
 </table><br>

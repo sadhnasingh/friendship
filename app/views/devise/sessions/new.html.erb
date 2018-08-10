@@ -5,8 +5,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <center> <fieldset>
   <legend><h2 >Log in</h2></legend></fieldset>
+<!-- <style> 
+  table { 
+  background:url("sadhna.png"); 
+  } 
+</style> -->
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-<table border="2px" align="center" width="30%", style="background-color: violet">
+<table border="2px" align="center" width="30%", style="background-color: lime ">
   <td><br>
     <div class="field">
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= f.label :email %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

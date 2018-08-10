@@ -13,11 +13,13 @@
 	<%= image_tag current_user.image_url.to_s, style:"height: 70px; width: 100px;" %><br><br>
     <strong>About:</strong>
     <%= current_user.about %><br><br>
+    <%= link_to 'My gallery', mygalleries_gallery_path, class: "btn btn-success" %>
   <%end%>
 </ul>
 <%= link_to 'Edit my profile', edit_user_registration_path, class: "btn btn-success" %>
 </td>
-</table>
+</table><br>
+<center><%= link_to 'Back', :back, class: "btn btn-success btn-lg" %></center>
 
 </body>
 </html>

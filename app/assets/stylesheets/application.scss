@@ -79,3 +79,8 @@ body  {
     background-size: 100%;
 
 }
+#conversation-body {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 2em;
+}

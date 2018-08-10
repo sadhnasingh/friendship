@@ -1,0 +1,21 @@
+<%= form_with url:  mygalleries_create_gallery_path do |f| %>
+
+ <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image, multiple: true%>
+  </div><br>
+  <%= f.hidden_field :user_id, value: current_user.id%>
+   <div class="actions" align="center">
+    <%= f.submit "Upload",class: "btn btn-success" %>
+  </div><br>
+
+<% end %>
+<strong>Images</strong>  <br>
+<% current_user.mygalleries.each do |gallery| %>
+  <img src="<%= gallery.try(:image).url%>" alt="default", height="400px" width="300px" >
+ <%end%>
+ 
+  
+
+
+ 
