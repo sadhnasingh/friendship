@@ -16,7 +16,7 @@
   	<td><%= user.email %></td>
   	<td><%= image_tag user.image_url.to_s, style:"height: 70px; width: 100px;" %></td>
     <td><%= user.about %></td>
-     <td> <%= link_to 'Send a message', conversations_index_path,class: "btn btn-success "%> </td> 
+     
     <td> <%= link_to 'Show profile',friendships_friendprofile_user_path(user), class: "btn btn-success "%> </td> 
     <td>
       <% if user.friendships.present?%>
